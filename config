@@ -1,2 +1,2 @@
-rmq: node app.js
+rmq: node sports-consumer/app.js
 webSocket: node websocket/app.js

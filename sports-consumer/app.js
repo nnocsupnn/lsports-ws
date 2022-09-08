@@ -1,5 +1,5 @@
-const connections = require('./src/connections');
-const pusher = require('./src/producer/pusher');
+const connections = require('./connections');
+const pusher = require('./producer/pusher');
 
 (async ({ registerConsumer, createRedisConnection, Queues }) => {
     pusher.redis = await createRedisConnection()

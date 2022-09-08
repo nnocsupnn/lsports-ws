@@ -1,8 +1,8 @@
 const server = require('http').createServer();
 const { createRedisConnection, Queues } = require('../src/connections')
-const emitterMarkets = require("../src/emitters/markets.emitter")
-const emitterFixtures = require("../src/emitters/fixtures.emitter")
-const emitterLivescore = require("../src/emitters/livescores.emitter")
+const emitterMarkets = require("./emitters/markets.emitter")
+const emitterFixtures = require("./emitters/fixtures.emitter")
+const emitterLivescore = require("./emitters/livescores.emitter")
 
 const io = require('socket.io')(server, {
     cors: {
