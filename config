@@ -1,0 +1,2 @@
+rmq: node app.js
+webSocket: node websocket/app.js

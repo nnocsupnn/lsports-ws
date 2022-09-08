@@ -1,0 +1,27 @@
+{
+  "name": "sports-socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nf start --procfile config webSocket=2,rmq=1",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "websocket": "nf start --procfile config webSocket",
+    "consumer": "node app.js"
+  },
+  "keywords": [
+    "websocket"
+  ],
+  "author": "Nino Casupanan",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "bull": "^4.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "foreman": "^3.0.1",
+    "redis": "^4.3.1",
+    "socket.io": "^4.5.2",
+    "throng": "^5.0.0"
+  }
+}
