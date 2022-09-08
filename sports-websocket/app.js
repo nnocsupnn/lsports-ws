@@ -1,5 +1,5 @@
 const server = require('http').createServer();
-const { createRedisConnection, Queues } = require('../src/connections')
+const { createRedisConnection, Queues } = require('../sports-app/connections')
 const emitterMarkets = require("./emitters/markets.emitter")
 const emitterFixtures = require("./emitters/fixtures.emitter")
 const emitterLivescore = require("./emitters/livescores.emitter")

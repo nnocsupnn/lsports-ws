@@ -32,6 +32,7 @@ const getConnection = async () => {
 
 const getChannel = async () => {
     const connection = await getConnection()
+    console.info(`[RMQ] Channel created`)
     return await connection.createChannel()
 }
 

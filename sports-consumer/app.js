@@ -1,4 +1,4 @@
-const connections = require('./connections');
+const connections = require('../sports-app/connections');
 const pusher = require('./producer/pusher');
 
 (async ({ registerConsumer, createRedisConnection, Queues }) => {

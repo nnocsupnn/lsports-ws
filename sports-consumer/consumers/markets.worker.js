@@ -1,4 +1,4 @@
-const { Queues } = require("../connections")
+const { Queues } = require("../../sports-app/connections")
 
 Queues.MarketQueues.process(2, async (job, done) => {
     done(null, job.data)

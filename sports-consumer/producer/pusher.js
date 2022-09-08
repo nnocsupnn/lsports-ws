@@ -14,6 +14,8 @@ module.exports.consumer = async data => {
         backoff: 3000
     }
 
+    console.log(jsonData.Header.Type)
+
     switch (jsonData.Header.Type) {
         /**
          * Fixtures
