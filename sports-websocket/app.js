@@ -17,19 +17,7 @@ const port = process.env.PORT;
 ([emitterMarkets, emitterFixtures, emitterLivescore]).map(emitter => emitter(io, Queues));
 
 io.on('connection', async client => {
-    // const redisConnection = await createRedisConnection()
-
-    // await redisConnection.brPop(process.env.REDIS_QUEUE_NAME, (error, data) => {
-    //     if (error) throw Error(error)
-    //     console.log(data)
-    //     process.exit()
-    // })
-    
-    // client.emit('eventx', { message: 'Welcome!', id: client.id });
-    // client.on('eventx', msg => {
-    //     console.log(msg)
-    // });
-
+    // TODO: Create central connection detection
     client.on('disconnect', () => {});
 });
 

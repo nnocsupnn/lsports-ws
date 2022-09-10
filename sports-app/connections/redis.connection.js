@@ -1,50 +1,7 @@
-const env = require("dotenv")
-const amqp = require('amqplib')
 const { createClient } = require("redis")
-const BullQueue = require("bull")
-
-env.config()
+const BullQueue = require("bull");
 const environtmentValues = process.env
 
-let queuePkg = `_${environtmentValues.LSPORT_PACKG_ID}_`
-let usr = environtmentValues.LSPORT_USR
-let pw = environtmentValues.LSPORT_PW
-
-var raabitmqSettings = {
-    protocol: 'amqp',
-    hostname: environtmentValues.LSPORT_HOST,
-    port: 5672,    
-    vhost: 'Customers',
-    username: usr,
-    password: pw,
-    locale: 'en_US',
-    hearteat: 580
-}
-
-// RMQ
-const getConnection = async () => {
-    try {
-        return await amqp.connect(raabitmqSettings)
-    } catch (e) {
-        console.error(e)
-    }
-}
-
-const getChannel = async () => {
-    const connection = await getConnection()
-    console.info(`[RMQ] Channel created`)
-    return await connection.createChannel()
-}
-
-const registerConsumer = async consumer => {
-    if (typeof consumer != 'function') throw Error("Argument consumer must be a function.")
-    const ch = await getChannel()
-    await ch.consume(queuePkg, consumer, {
-        noAck: true, consumerTag: "consumer"
-    }) 
-}
-
-// REDIS
 const createRedisConnection = async () => {
     const user = environtmentValues.REDIS_USER
     const pass = environtmentValues.REDIS_PASSWORD
@@ -64,6 +21,7 @@ const createRedisConnection = async () => {
     return await redisClient
 }
 
+// Bull Queue
 const options = {
     redis: {
         port: environtmentValues.REDIS_PORT,
@@ -71,6 +29,7 @@ const options = {
         password: environtmentValues.REDIS_PASSWORD
     }
 }
+
 const Queues = {
     FixtureQueues: new BullQueue('fixture.queues', options),
     LivescoreQueues: new BullQueue('livescore.queues', options),
@@ -78,7 +37,6 @@ const Queues = {
 }
 
 module.exports = {
-    registerConsumer,
     createRedisConnection,
     Queues
 }
